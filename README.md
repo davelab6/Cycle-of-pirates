@@ -1,31 +1,33 @@
-# Cycle-of-pirates
+A pirate walks into a bar...
+============================
 
-I forgot to copy the word problem for this one, so I'll have to recreate what 
-it said. The storyline for all these problems is that there is an evil doctor, 
-Dr. Boolean, 
-who wants to capture rabbits and turn them into zombies. In order to get to 
-Dr. Boolean's lair, you come to a bar and have to ask the pirates sitting at 
-the bar for directions to the lair. The pirates fill up the seats at the bar, 
-and each of them have a tattoo of a number (all unique) on their arm. You 
-start with th pirate with 0 tattooed on his arm, and ask him where the lair is. 
-He says he doesn't know, but tells you the tattoo number of a pirate that you 
-should ask. You go to that pirate, and says something similar. So you will 
-go from pirate to pirate asking where the lair is. Each pirate tells you one and 
-only one other pirate to ask, and no pirate directs you back to himself. Since 
-there are (we are assuming) a finite number of pirates at the bar, you will 
-eventually start going in a loop. 
+The script cycle.py was my solution to this problem:
 
-This question asked, given that you start at pirate 0, what is the length of 
-the loop that you end up in? For instance if the redirection goes 
-0 -> 1 -> 2 -> 1, the length of the loop would be 2; 0 would not be included in 
-this loop.
+You must hurry to find Professor Boolean's secret lab. You fear it may be too late. 
 
-You are asked to define a function answer(numbers) in either python or 
-javascript that took in a list of integers representing where the pirates 
-redirect you to, and returns the length of the loop that you end up in. The 
-input numbers represents the redirection information in the following way. 
-The integer n in the list numbers having index i means that the pirate with 
-the number i tattooed on his arm redirects you to the pirate with the number 
-n tattooed on his arm. 
+Rumor has it that one of the pirates in this tavern knows where it is. There's a whole row of them seated at the bar. You start by talking to the pirate seated on the left-most barstool. However, the pirate redirects you to another pirate. Fine... you go to talk to that one. To your great annoyance, that pirate redirects you to yet another pirate! And on and on it goes. Is there no end to this madness? You notice each pirate has a number tattooed on his arm and decide to ID each man by his number. Each pirate redirects to a different pirate, other than himself. Because of this, it is guaranteed that you will start going in loops talking to them.
 
-The script cycle.py was my solution to this problem.
+Write a function answer(numbers) which returns the number of pirates which form a loop, given that you start by talking to the left-most pirate, 0. numbers will be an array of non-negative integers such that number[m] is the number of the pirate to whom pirate m redirects. No pirate redirects to himself. The left-most pirate is number 0, the next is number 1, and so on. Each element in the numbers list will be in the range [0, n-1] where n is the length of the numbers list.
+
+For example, suppose the numbers list were [1, 3, 0, 1]. Then pirate 0 redirects to pirate 1, who redirects to pirate 3, who redirects back to pirate 1. There is a loop of two pirates: 1, 3. Thus the answer would be 2. Note that even though you started with pirate 0, he is not part of the loop.
+
+The number of pirates will be at least 2 and no more than 5000.
+
+Test cases
+==========
+
+Inputs:
+
+    (int list) numbers = [1, 0]
+
+Output:
+
+    (int) 2
+
+Inputs:
+
+    (int list) numbers = [1, 2, 1]
+
+Output:
+
+    (int) 2
